@@ -97,7 +97,7 @@ var SH={};SH.c=sh(Q.filter(function(q){return q.type==="c";}));SH.f=sh(Q.filter(
 var CT="c";var CI=S.ix.c||0;var L=SH[CT];
 function sv(){try{localStorage.setItem("aqs",JSON.stringify(S));}catch(e){}}
 function ga(q){if(q.type==="c")return q.a;if(q.type==="j")return q.a==="Y"?"正确":"错误";return q.a.join(" | ");}
-function ckf(u,q){if(!u)return false;var ss=q.a[0].split("|").map(function(s){return s.trim().toLowerCase();});return ss.some(function(s){return u.trim().toLowerCase()===s;});}
+function ckf(u,q){if(!u)return false;var up=u.split(/[;；]/).map(function(s){return s.trim().toLowerCase();}).filter(function(s){return s;});if(q.a.length===1){var alts=q.a[0].split("|").map(function(s){return s.trim().toLowerCase();});return alts.some(function(a){return up[0]===a;});}if(up.length!==q.a.length)return false;for(var i=0;i<q.a.length;i++){var alts=q.a[i].split("|").map(function(s){return s.trim().toLowerCase();});if(!alts.some(function(a){return up[i]===a;}))return false;}return true;}
 function rd(){var q=L[CI];if(!q)return;var qid=q.type+"_"+q.id;var rv=!!S.rv[qid];var sl=S.ans[qid];
 document.getElementById("qNu").textContent=CI+1;
 var tg=document.getElementById("qTg");if(q.type==="c"){tg.textContent="单选";tg.className="qt c";}else if(q.type==="f"){tg.textContent="填空";tg.className="qt f";}else{tg.textContent="判断";tg.className="qt j";}
